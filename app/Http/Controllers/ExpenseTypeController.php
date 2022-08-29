@@ -8,14 +8,12 @@ use App\Models\ExpenseType;
 
 class ExpenseTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('expense-type.index', [
+            'types' => ExpenseType::all()
+        ]);
     }
 
     /**
