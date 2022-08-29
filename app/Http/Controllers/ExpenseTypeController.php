@@ -29,38 +29,25 @@ class ExpenseTypeController extends Controller
         return redirect()->route('expense-type.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ExpenseType  $expenseType
-     * @return \Illuminate\Http\Response
-     */
+    // TODO: implementirati nakon odgovora PM-a
     public function show(ExpenseType $expenseType)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ExpenseType  $expenseType
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(ExpenseType $expenseType)
     {
-        //
+        return view('expense-type.edit', [
+            'type' => $expenseType
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateExpenseTypeRequest  $request
-     * @param  \App\Models\ExpenseType  $expenseType
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateExpenseTypeRequest $request, ExpenseType $expenseType)
     {
-        //
+        $expenseType->update($request->all());
+        return redirect()->route('expense-type.index');
     }
 
     /**

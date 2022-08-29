@@ -35,7 +35,11 @@
                                         <th>{{ $type->id }}</th>
                                         <th>{{ $type->name }}</th>
                                         <th>...</th>
-                                        <th>...</th>
+                                        <th>
+                                            <a href="{{ route('expense-type.edit', ['expense_type' => $type]) }}">
+                                                izmjena
+                                            </a>
+                                        </th>
                                         <th>...</th>
                                     </tr>
                                 @endforeach
