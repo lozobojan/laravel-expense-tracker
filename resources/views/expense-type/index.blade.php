@@ -5,7 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Tipovi troškova</div>
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                <span>Tipovi troškova</span>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ route('expense-type.create') }}" class="btn btn-outline-primary btn-sm float-end">+</a>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="card-body table-responsive">
 
