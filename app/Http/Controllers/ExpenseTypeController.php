@@ -50,14 +50,10 @@ class ExpenseTypeController extends Controller
         return redirect()->route('expense-type.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ExpenseType  $expenseType
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(ExpenseType $expenseType)
     {
-        //
+        $expenseType->restore();
+        return redirect()->route('expense-type.index');
     }
 }

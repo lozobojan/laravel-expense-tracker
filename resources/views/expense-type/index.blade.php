@@ -40,7 +40,13 @@
                                                 izmjena
                                             </a>
                                         </th>
-                                        <th>...</th>
+                                        <th>
+                                            <form method="POST" action="{{ route('expense-type.destroy', ['expense_type' => $type]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-outline-danger">x</button>
+                                            </form>
+                                        </th>
                                     </tr>
                                 @endforeach
                             </tbody>
