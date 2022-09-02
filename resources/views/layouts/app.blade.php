@@ -29,11 +29,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('expense-type.index') }}">Tipovi troškova</a>
-                        </li>
-                    </ul>
+                    @if(auth()->check())
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a href="{{ route('expense-type.index') }}">Tipovi troškova</a>
+                            </li>
+                            <li class="nav-item ps-3">
+                                <a href="{{ route('expense-subtype.index') }}">Podtipovi troškova</a>
+                            </li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -57,6 +62,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('settings') }}">Podešavanja</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -79,4 +87,7 @@
         </main>
     </div>
 </body>
+
+@yield('additional_scripts')
+
 </html>
