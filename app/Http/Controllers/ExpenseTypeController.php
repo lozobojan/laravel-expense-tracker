@@ -53,7 +53,7 @@ class ExpenseTypeController extends Controller
 
     public function destroy(ExpenseType $expenseType)
     {
-        $expenseType->restore();
+        $expenseType->delete();
         return redirect()->route('expense-type.index');
     }
 }

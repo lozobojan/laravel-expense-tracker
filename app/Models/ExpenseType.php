@@ -11,4 +11,7 @@ class ExpenseType extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = ['id'];
 
+    public function expense_subtypes(){
+        return $this->hasMany(ExpenseSubtype::class);
+    }
 }

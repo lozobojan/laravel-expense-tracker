@@ -8,10 +8,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-6">
-                                <span>Tipovi troškova</span>
+                                <span>Podtipov troškova</span>
                             </div>
                             <div class="col-6">
-                                <a href="{{ route('expense-type.create') }}" class="btn btn-outline-primary btn-sm float-end">+</a>
+                                <a href="{{ route('expense-subtype.create') }}" class="btn btn-outline-primary btn-sm float-end">+</a>
                             </div>
                         </div>
                     </div>
@@ -22,6 +22,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Tip</th>
                                     <th>Naziv</th>
                                     <th>Detalji</th>
                                     <th>Izmjena</th>
@@ -30,21 +31,22 @@
                             </thead>
 
                             <tbody>
-                                @foreach($types as $type)
+                                @foreach($subtypes as $subtype)
                                     <tr>
-                                        <th>{{ $type->id }}</th>
-                                        <th>{{ $type->name }}</th>
+                                        <th>{{ $subtype->id }}</th>
+                                        <th>{{ $subtype->expense_type->name }}</th>
+                                        <th>{{ $subtype->name }}</th>
                                         <th>...</th>
                                         <th>
-                                            <a href="{{ route('expense-type.edit', ['expense_type' => $type]) }}">
+                                            <a href="{{ route('expense-subtype.edit', ['expense_subtype' => $subtype]) }}">
                                                 izmjena
                                             </a>
                                         </th>
                                         <th>
-                                            <form method="POST" id="delete-form-{{ $type->id }}" action="{{ route('expense-type.destroy', ['expense_type' => $type]) }}">
+                                            <form method="POST" id="delete-form-{{ $subtype->id }}" action="{{ route('expense-subtype.destroy', ['expense_subtype' => $subtype]) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a onclick="deleteType({{ $type->id }})" class="btn btn-sm btn-outline-danger">x</a>
+                                                <a onclick="deleteSubtype({{ $subtype->id }})" class="btn btn-sm btn-outline-danger">x</a>
                                             </form>
                                         </th>
                                     </tr>
@@ -61,7 +63,7 @@
 
 @section('additional_scripts')
     <script>
-        function deleteType(id){
+        function deleteSubtype(id){
             if(confirm('Da li ste sigurni?')){
                 document.getElementById('delete-form-'+id).submit();
             }
