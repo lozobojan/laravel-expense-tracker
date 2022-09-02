@@ -14,4 +14,8 @@ class ExpenseType extends Model
     public function expense_subtypes(){
         return $this->hasMany(ExpenseSubtype::class);
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }

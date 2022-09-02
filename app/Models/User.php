@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function expense_types(){
+        return $this->belongsToMany(ExpenseType::class);
+    }
+
+    public function hasExpenseType($expense_type_id){
+        foreach ($this->expense_types as $type){
+            if ($type->id == $expense_type_id) return true;
+        }
+        return false;
+    }
 }

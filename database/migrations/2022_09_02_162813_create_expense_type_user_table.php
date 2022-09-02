@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expense_subtypes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('expense_type_user', function (Blueprint $table) {
             $table->foreignId('expense_type_id')->constrained('expense_types');
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_subtypes');
+        Schema::dropIfExists('expense_type_user');
     }
 };
