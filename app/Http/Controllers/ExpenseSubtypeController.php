@@ -59,4 +59,8 @@ class ExpenseSubtypeController extends Controller
         $expenseSubtype->delete();
         return redirect()->route('expense-subtype.index');
     }
+
+    public function getByTypeId(ExpenseType $expense_type){
+        return $expense_type->expense_subtypes;
+    }
 }
