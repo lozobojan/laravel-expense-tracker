@@ -37,6 +37,9 @@
                             <li class="nav-item ps-3">
                                 <a href="{{ route('expense-subtype.index') }}">Podtipovi troškova</a>
                             </li>
+                            <li class="nav-item ps-3">
+                                <a href="{{ route('expense.index') }}">Troškovi</a>
+                            </li>
                         </ul>
                     @endif
 

@@ -58,13 +58,9 @@ class ExpenseTypeController extends Controller
     }
 
     public function attachTypeToUser(ExpenseType $expense_type){
-        $currentUser = auth()->user();
-        if($currentUser->hasExpenseType($expense_type->id)){
-            $currentUser->expense_types()->detach($expense_type->id);
-        }else{
-            $currentUser->expense_types()->attach($expense_type->id);
-        }
 
+        auth()->user()->expense_types()->toggle($expense_type->id);
         return redirect()->route('settings');
+
     }
 }
