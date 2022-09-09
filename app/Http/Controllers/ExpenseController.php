@@ -6,6 +6,7 @@ use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Models\Expense;
 use App\Models\ExpenseType;
+use Illuminate\Support\Facades\Storage;
 
 class ExpenseController extends Controller
 {
@@ -25,7 +26,20 @@ class ExpenseController extends Controller
 
     public function store(StoreExpenseRequest $request)
     {
-        auth()->user()->expenses()->create($request->all());
+        $newExpense = auth()->user()->expenses()->create($request->all());
+
+        if ($request->has('files')){
+
+            if(!Storage::exists('attachments'))
+                Storage::makeDirectory('attachments');
+
+            foreach ($request->file('files') as $file) {
+                $newExpense->attachments()->create([
+                    'file_path' => Storage::put('attachments', $file)
+                ]);
+            }
+        }
+
         return redirect()->route('expense.index');
     }
 

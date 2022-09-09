@@ -27,7 +27,9 @@ class StoreExpenseRequest extends FormRequest
             'date' => ['date', 'required'],
             'amount' => ['required', 'min:0', 'numeric'],
             'expense_subtype_id' => ['required', 'integer', 'exists:expense_subtypes,id'],
-            'description' => ['nullable', 'string']
+            'description' => ['nullable', 'string'],
+            'files' => ['nullable', 'array'],
+            'files.*' => ['file']
         ];
     }
 }

@@ -9,7 +9,7 @@
 
                     <div class="card-body table-responsive">
 
-                        <form action="{{ route('expense.store') }}" method="POST">
+                        <form action="{{ route('expense.store') }}" method="POST" enctype="multipart/form-data">
 
                             @csrf
                             <div class="row">
@@ -32,6 +32,12 @@
                                 </div>
                                 <div class="col-6">
                                     <select name="expense_subtype_id" class="form-control" id="subtype_id"></select>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <input type="file" name="files[]" multiple class="form-control">
                                 </div>
                             </div>
 
