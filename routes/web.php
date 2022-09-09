@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::resource('/expense-subtype', ExpenseSubtypeController::class);
     Route::resource('/expense', ExpenseController::class);
     Route::get('/expense-subtype/get-by-type/{expense_type}', [ ExpenseSubtypeController::class, 'getByTypeId' ])->name('get-subtypes-by-type');
+    Route::get('/expense/{expense}/attachments', [ ExpenseController::class, 'showAttachments' ])->name('show-attachments');
 
     Route::view('/settings', 'settings', [
         'types' => ExpenseType::query()->orderBy('name')->get()

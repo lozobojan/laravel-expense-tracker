@@ -87,4 +87,10 @@ class ExpenseController extends Controller
     {
         //
     }
+
+    public function showAttachments(Expense $expense){
+        return view('expense.attachments', [
+            'attachments' => $expense->attachments
+        ]);
+    }
 }

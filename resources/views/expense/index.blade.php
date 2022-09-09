@@ -38,7 +38,12 @@
                                         <td>{{ $expense->amount_formatted }}</td>
                                         <td>{{ $expense->description_trimmed }}</td>
                                         <td>
-                                            <a href="{{ route('expense.edit', ['expense' => $expense]) }}">
+                                            <a @class(['disabled' => $expense->attachments()->count() == 0 , 'btn', 'btn-sm', 'btn-outline-primary']) href="{{ route('show-attachments', ['expense' => $expense]) }}">
+                                                fajlovi
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('expense.edit', ['expense' => $expense]) }}" class="btn btn-sm btn-outline-primary">
                                                 izmjena
                                             </a>
                                         </td>
