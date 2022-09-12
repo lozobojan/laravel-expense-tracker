@@ -23,6 +23,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Datum</th>
+                                    <th>Tip</th>
+                                    <th>Podtip</th>
                                     <th>Iznos</th>
                                     <th>Opis</th>
                                     <th>Izmjena</th>
@@ -35,10 +37,12 @@
                                     <tr>
                                         <td>{{ $expense->id }}</td>
                                         <td>{{ $expense->date_formatted }}</td>
+                                        <td>{{ $expense->expense_subtype->expense_type->name }}</td>
+                                        <td>{{ $expense->expense_subtype->name }}</td>
                                         <td>{{ $expense->amount_formatted }}</td>
                                         <td>{{ $expense->description_trimmed }}</td>
                                         <td>
-                                            <a @class(['disabled' => $expense->attachments()->count() == 0 , 'btn', 'btn-sm', 'btn-outline-primary']) href="{{ route('show-attachments', ['expense' => $expense]) }}">
+                                            <a @class(['disabled' => $expense->attachments->count() == 0 , 'btn', 'btn-sm', 'btn-outline-primary']) href="{{ route('show-attachments', ['expense' => $expense]) }}">
                                                 fajlovi
                                             </a>
                                         </td>
