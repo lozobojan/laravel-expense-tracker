@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ExpenseType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ExpenseTypeSeeder extends Seeder
@@ -15,11 +14,11 @@ class ExpenseTypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ["Računi", "Obrazovanje", "Ostalo"];
-        foreach ($types as $type) {
-            ExpenseType::query()->create([
-                'name' => $type
-            ]);
-        }
+        $types = [
+            ['name' => "Računi"],
+            ['name' => "Obrazovanje"],
+            ['name' => "Ostalo"]
+        ];
+        ExpenseType::query()->insert($types);
     }
 }
