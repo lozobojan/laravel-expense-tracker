@@ -58,9 +58,9 @@ class Expense extends Model
     // global scope
     protected static function booted()
     {
-        static::addGlobalScope('mine', function(Builder $query){
-            $query->where('user_id', auth()->id());
-        });
+//        static::addGlobalScope('mine', function(Builder $query){
+//            $query->where('user_id', auth()->id());
+//        });
     }
 
     // local scope
