@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Expense extends Model
 {
-    use HasFactory;
+    use HasFactory, Taggable, InteractsWithMedia;
     protected $guarded = ['id'];
     protected $dates = ['created_at', 'updated_at', 'date'];
     protected $with = ['expense_subtype', 'expense_subtype.expense_type', 'attachments']; // eager loading
@@ -71,6 +73,4 @@ class Expense extends Model
     public function scopeCheap($query){
         $query->where('amount', '<', self::EXPENSIVE_THRESHOLD);
     }
-
-
 }
