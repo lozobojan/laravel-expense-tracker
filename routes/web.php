@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ExpenseSubtypeController;
 use App\Http\Controllers\ExpenseTypeController;
@@ -26,3 +27,9 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::post('/attach-detach/{expense_type}', [ExpenseTypeController::class, 'attachTypeToUser'])->name('expense-type.attach-detach');
 });
+
+Route::get('/auth/github/login', [SocialLoginController::class, 'initGitHubLogin'])->name('login.github');
+Route::get('/auth/github/callback', [SocialLoginController::class, 'gitHubLoginCallback'])->name('login.github.callback');
+
+Route::get('/auth/google/login', [SocialLoginController::class, 'initGoogleLogin'])->name('login.google');
+Route::get('/auth/google/callback', [SocialLoginController::class, 'googleLoginCallback'])->name('login.google.callback');
