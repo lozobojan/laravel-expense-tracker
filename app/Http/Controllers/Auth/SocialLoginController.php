@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -31,12 +33,19 @@ class SocialLoginController extends Controller
     }
 
     public function loginSocialUser($user){
+        $userExists = User::query()->where('email', $user->getEmail())->count() > 0;
+
         $existingUser = User::query()->firstOrCreate([
             'email' => $user->getEmail()
         ], [
             'name' => $user->getName(),
             'password' => Hash::make(Str::random(10)),
         ]);
+
+        if(!$userExists){
+            // send welcome mail
+            Mail::to($user->getEmail())->send(new WelcomeMail($existingUser));
+        }
 
         Auth::login($existingUser, true);
         return redirect()->route('home');
