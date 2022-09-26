@@ -67,6 +67,19 @@
                     </form>
                 </div>
             </div>
+
+            <div class="card mt-4">
+                <div class="card-header">Social Login</div>
+
+                <div class="card-body">
+                    <p>
+                        <a href="{{ route('login.github') }}">Login with GitHub</a>
+                    </p>
+                    <p>
+                        <a href="{{ route('login.google') }}">Login with Google</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
