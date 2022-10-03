@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewExpenseAddedEvent;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Models\Expense;
@@ -28,7 +29,6 @@ class ExpenseController extends Controller
     public function store(StoreExpenseRequest $request)
     {
         $newExpense = auth()->user()->expenses()->create($request->all());
-        auth()->user()->notify(new NewExpenseNotification($newExpense));
 
         if ($request->has('files')){
 
@@ -42,6 +42,7 @@ class ExpenseController extends Controller
             }
         }
 
+        event(new NewExpenseAddedEvent($newExpense, auth()->user()));
         return redirect()->route('expense.index');
     }
 

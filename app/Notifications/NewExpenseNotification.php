@@ -64,4 +64,6 @@ class NewExpenseNotification extends Notification implements ShouldQueue
             //
         ];
     }
+
+
 }
