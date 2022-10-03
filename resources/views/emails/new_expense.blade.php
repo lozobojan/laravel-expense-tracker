@@ -1,11 +1,10 @@
 @component('mail::message')
 # You have added new expense
 
-Expense amount: {{ $expense->amount_formatted }}
+New expense amount: {{ $expense->amount_formatted }}
+<br/>
+Total expenses: {{ number_format($sum, 2) }} €
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
 
 Thanks,<br>
 {{ config('app.name') }}

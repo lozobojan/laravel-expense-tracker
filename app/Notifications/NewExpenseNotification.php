@@ -20,6 +20,7 @@ class NewExpenseNotification extends Notification implements ShouldQueue
      */
     public function __construct(public Expense $expense)
     {
+
     }
 
     /**
@@ -33,6 +34,12 @@ class NewExpenseNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
+    public function getExpenseSum($notifiable){
+        return Expense::query()
+            ->withoutGlobalScope('mine')
+            ->where('user_id', $notifiable->id)->sum('amount');
+    }
+
     /**
      * Get the mail representation of the notification.
      *
@@ -41,7 +48,8 @@ class NewExpenseNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new NewExpenseMail($this->expense))->to($notifiable->email);
+        $sum = $this->getExpenseSum($notifiable);
+        return (new NewExpenseMail($this->expense, $sum))->to($notifiable->email);
     }
 
     /**
