@@ -2,27 +2,24 @@
 
 namespace App\Notifications;
 
-use App\Mail\WelcomeMail;
-use App\Models\User;
+use App\Mail\NewExpenseMail;
+use App\Models\Expense;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewUserNotification extends Notification implements ShouldQueue
+class NewExpenseNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    public User $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(public Expense $expense)
     {
-        $this->user = $user;
     }
 
     /**
@@ -40,11 +37,11 @@ class NewUserNotification extends Notification implements ShouldQueue
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return WelcomeMail
+     * @return NewExpenseMail
      */
     public function toMail($notifiable)
     {
-        return (new WelcomeMail($this->user))->to($notifiable->email);
+        return (new NewExpenseMail($this->expense))->to($notifiable->email);
     }
 
     /**
@@ -58,9 +55,5 @@ class NewUserNotification extends Notification implements ShouldQueue
         return [
             //
         ];
-    }
-
-    public function toSms(){
-
     }
 }

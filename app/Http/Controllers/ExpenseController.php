@@ -6,6 +6,7 @@ use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Models\Expense;
 use App\Models\ExpenseType;
+use App\Notifications\NewExpenseNotification;
 use Illuminate\Support\Facades\Storage;
 
 class ExpenseController extends Controller
@@ -27,6 +28,7 @@ class ExpenseController extends Controller
     public function store(StoreExpenseRequest $request)
     {
         $newExpense = auth()->user()->expenses()->create($request->all());
+        auth()->user()->notify(new NewExpenseNotification($newExpense));
 
         if ($request->has('files')){
 
