@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\WelcomeMail;
 use App\Models\User;
+use App\Notifications\NewUserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,7 +45,7 @@ class SocialLoginController extends Controller
 
         if(!$userExists){
             // send welcome mail
-            Mail::to($user->getEmail())->send(new WelcomeMail($existingUser));
+            $existingUser->notify(new NewUserNotification($existingUser));
         }
 
         Auth::login($existingUser, true);
