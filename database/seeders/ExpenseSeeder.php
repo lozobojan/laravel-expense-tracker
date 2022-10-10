@@ -34,8 +34,11 @@ class ExpenseSeeder extends Seeder
         ];
 
         // Expense::query()->insert($expenses);
-        foreach ($expenses as $expense) {
-            Expense::query()->create($expense);
-        }
+//        foreach ($expenses as $expense) {
+//            Expense::query()->create($expense);
+//        }
+
+        Expense::factory(10000)->create();
+
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ExpenseSubtype;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class ExpenseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => 11,
+            'expense_subtype_id' => ExpenseSubtype::query()->inRandomOrder()->first()->id,
+            'amount' => fake()->randomFloat(2, 0.01, 1000.00),
+            'date' => fake()->date(),
+            'description' => fake()->text(255)
         ];
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ExpenseSubtypeController;
 use App\Http\Controllers\ExpenseTypeController;
+use App\Http\Controllers\ReportController;
 use App\Models\ExpenseType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,9 @@ Route::group(['middleware' => 'auth'], function (){
     ])->name('settings');
 
     Route::post('/attach-detach/{expense_type}', [ExpenseTypeController::class, 'attachTypeToUser'])->name('expense-type.attach-detach');
+
+    Route::get('/reports', [ReportController::class, 'getReportView'])->name('get-report-view');
+    Route::post('/generate-report', [ReportController::class, 'generateReport'])->name('generate-report');
 });
 
 Route::get('/auth/github/login', [SocialLoginController::class, 'initGitHubLogin'])->name('login.github');

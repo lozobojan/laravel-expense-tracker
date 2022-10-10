@@ -40,6 +40,9 @@
                             <li class="nav-item ps-3">
                                 <a href="{{ route('expense.index') }}">Troškovi</a>
                             </li>
+                            <li class="nav-item ps-3">
+                                <a href="{{ route('get-report-view') }}">Izvještaji</a>
+                            </li>
                         </ul>
                     @endif
 
