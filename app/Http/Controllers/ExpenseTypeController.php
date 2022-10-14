@@ -9,6 +9,11 @@ use App\Models\ExpenseType;
 class ExpenseTypeController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->authorizeResource(ExpenseType::class, 'expense-type');
+    }
+
     public function index()
     {
         return view('expense-type.index', [

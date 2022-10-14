@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Storage;
 class ExpenseController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->authorizeResource(Expense::class, 'expense');
+    }
+
     public function index()
     {
-        $expenses = Expense::query()->latest()->get();
+        $expenses = Expense::query()->latest()->take(10)->get();
         return view('expense.index', compact('expenses'));
     }
 
@@ -54,7 +59,7 @@ class ExpenseController extends Controller
      */
     public function show(Expense $expense)
     {
-        //
+        return $expense;
     }
 
     /**
@@ -65,7 +70,7 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        return $expense;
     }
 
     /**

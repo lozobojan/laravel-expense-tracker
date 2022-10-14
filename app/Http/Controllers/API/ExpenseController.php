@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExpenseController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Expense::class, 'expense');
+    }
+
     /**
      * Display a listing of the resource.
      *

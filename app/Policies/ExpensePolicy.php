@@ -18,7 +18,7 @@ class ExpensePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return auth()->check();
     }
 
     /**
@@ -30,7 +30,7 @@ class ExpensePolicy
      */
     public function view(User $user, Expense $expense)
     {
-        //
+        return $user->id == $expense->user_id;
     }
 
     /**
@@ -41,7 +41,7 @@ class ExpensePolicy
      */
     public function create(User $user)
     {
-        //
+        return auth()->check();
     }
 
     /**
@@ -53,7 +53,7 @@ class ExpensePolicy
      */
     public function update(User $user, Expense $expense)
     {
-        //
+        return $user->id == $expense->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class ExpensePolicy
      */
     public function delete(User $user, Expense $expense)
     {
-        //
+        return $user->id == $expense->user_id;
     }
 
     /**
@@ -77,7 +77,7 @@ class ExpensePolicy
      */
     public function restore(User $user, Expense $expense)
     {
-        //
+        return $user->id == $expense->user_id;
     }
 
     /**
@@ -89,6 +89,6 @@ class ExpensePolicy
      */
     public function forceDelete(User $user, Expense $expense)
     {
-        //
+        return $user->id == $expense->user_id;
     }
 }

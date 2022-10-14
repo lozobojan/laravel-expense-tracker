@@ -31,15 +31,21 @@
                     <!-- Left Side Of Navbar -->
                     @if(auth()->check())
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a href="{{ route('expense-type.index') }}">Tipovi troškova</a>
-                            </li>
-                            <li class="nav-item ps-3">
-                                <a href="{{ route('expense-subtype.index') }}">Podtipovi troškova</a>
-                            </li>
-                            <li class="nav-item ps-3">
-                                <a href="{{ route('expense.index') }}">Troškovi</a>
-                            </li>
+                            @can('viewAny', \App\Models\ExpenseType::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('expense-type.index') }}">Tipovi troškova</a>
+                                </li>
+                            @endcan
+                            @can('viewAny', \App\Models\ExpenseSubtype::class)
+                                <li class="nav-item ps-3">
+                                    <a href="{{ route('expense-subtype.index') }}">Podtipovi troškova</a>
+                                </li>
+                            @endcan
+                            @can('viewAny', \App\Models\Expense::class)
+                                <li class="nav-item ps-3">
+                                    <a href="{{ route('expense.index') }}">Troškovi</a>
+                                </li>
+                            @endcan
                             <li class="nav-item ps-3">
                                 <a href="{{ route('get-report-view') }}">Izvještaji</a>
                             </li>

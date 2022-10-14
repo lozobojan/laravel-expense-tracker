@@ -18,7 +18,7 @@ class ExpenseSubtypePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->is_superadmin;
     }
 
     /**
@@ -30,7 +30,7 @@ class ExpenseSubtypePolicy
      */
     public function view(User $user, ExpenseSubtype $expenseSubtype)
     {
-        //
+        return $user->is_superadmin;
     }
 
     /**
@@ -41,7 +41,7 @@ class ExpenseSubtypePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->is_superadmin;
     }
 
     /**
@@ -53,7 +53,7 @@ class ExpenseSubtypePolicy
      */
     public function update(User $user, ExpenseSubtype $expenseSubtype)
     {
-        //
+        return $user->is_superadmin;
     }
 
     /**
@@ -65,7 +65,7 @@ class ExpenseSubtypePolicy
      */
     public function delete(User $user, ExpenseSubtype $expenseSubtype)
     {
-        //
+        return $user->is_superadmin;
     }
 
     /**
@@ -77,7 +77,7 @@ class ExpenseSubtypePolicy
      */
     public function restore(User $user, ExpenseSubtype $expenseSubtype)
     {
-        //
+        return $user->is_superadmin;
     }
 
     /**
@@ -89,6 +89,6 @@ class ExpenseSubtypePolicy
      */
     public function forceDelete(User $user, ExpenseSubtype $expenseSubtype)
     {
-        //
+        return false;
     }
 }
